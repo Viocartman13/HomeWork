@@ -1,6 +1,5 @@
 package com.vio.exercise4;
 
-import java.util.Comparator;
 import java.util.List;
 
 
@@ -14,7 +13,8 @@ public class DifferenceCalculator {
 
     public static Integer differenceCalculator(List<Integer> values) {
 
-        Integer lowestValue = values.stream().min(Comparator.comparing()).get();
+//        Integer lowestValue = values.stream().min(Comparator.comparing()).get();
+        return null;
     }
 
 }
