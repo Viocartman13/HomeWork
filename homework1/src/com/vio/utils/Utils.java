@@ -1,6 +1,7 @@
 package com.vio.utils;
 
 import java.util.*;
+import java.util.stream.Collectors;
 
 public class Utils {
 
@@ -26,13 +27,37 @@ public class Utils {
     }
 
     public static String checkDayOfTheWeek(DaysOfWeek dayOfWeek) {
-        var result = switch (dayOfWeek) {
+        return switch (dayOfWeek) {
             case MONDAY, TUESDAY, WEDNESDAY, THURSDAY, FRIDAY -> "workday";
             case SATURDAY, SUNDAY -> "weekend";
         };
-
-        return result;
     }
 
+    public static void generateViewTemplate(Map<String, String> values) {
+        var htmlTemplate = """
+                    <!DOCTYPE html>
+                    <html>
+                    <body>
+                    
+                    <h1>Hello ${name}. ${greeting}</h1>
+                    
+                    </body>
+                    </html>
+
+                """;
+
+        var replacedHtmlTemplate = htmlTemplate.replace("${name}", values.get("name")).replace("${greeting}", values.get("greeting"));
+
+        System.out.println("Html template: " + replacedHtmlTemplate);
+    }
+
+    public static Integer differenceCalculator(List<Integer> values) {
+
+        return values.stream().collect(Collectors.teeing(
+                Collectors.reducing(Integer::max),
+                Collectors.reducing(Integer::min),
+                (max, min) -> max.get() - min.get()));
+    }
 
 }
+
