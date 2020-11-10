@@ -1,4 +1,4 @@
-package com.vio.exercise1;
+package src.com.vio.exercise1;
 
 import java.util.HashMap;
 import java.util.Map;

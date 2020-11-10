@@ -1,6 +1,6 @@
-package com.vio.exercise6;
+package src.com.vio.exercise6;
 
-import com.vio.utils.Utils;
+import src.com.vio.utils.Utils;
 
 import java.util.HashMap;
 import java.util.Map;

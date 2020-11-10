@@ -1,6 +1,6 @@
-package com.vio.exercise2;
+package src.com.vio.exercise2;
 
-import com.vio.utils.Utils;
+import src.com.vio.utils.Utils;
 
 import java.util.NoSuchElementException;
 

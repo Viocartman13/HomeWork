@@ -1,4 +1,8 @@
-package com.vio.utils;
+package src.com.vio.utils;
+
+import src.com.vio.exercise8.Addition;
+import src.com.vio.exercise8.MathematicalOperation;
+import src.com.vio.exercise8.Subtraction;
 
 import java.util.*;
 import java.util.stream.Collectors;
@@ -57,6 +61,11 @@ public class Utils {
                 Collectors.reducing(Integer::max),
                 Collectors.reducing(Integer::min),
                 (max, min) -> max.get() - min.get()));
+    }
+
+    public static boolean checkOperationTypes(MathematicalOperation operation1, MathematicalOperation operation2) {
+        return (operation1 instanceof Addition && operation2 instanceof Addition) ||
+                (operation1 instanceof Subtraction && operation2 instanceof Subtraction);
     }
 
 }

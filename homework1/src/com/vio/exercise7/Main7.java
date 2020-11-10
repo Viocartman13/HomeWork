@@ -1,7 +1,7 @@
-package com.vio.exercise7;
+package src.com.vio.exercise7;
 
-import com.vio.utils.DaysOfWeek;
-import com.vio.utils.Utils;
+import src.com.vio.utils.DaysOfWeek;
+import src.com.vio.utils.Utils;
 
 public class Main7 {
 

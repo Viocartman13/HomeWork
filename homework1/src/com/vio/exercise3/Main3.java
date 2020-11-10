@@ -1,6 +1,6 @@
-package com.vio.exercise3;
+package src.com.vio.exercise3;
 
-import com.vio.utils.Utils;
+import src.com.vio.utils.Utils;
 
 public class Main3 {
 

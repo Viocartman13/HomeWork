@@ -1,6 +1,6 @@
-package com.vio.exercise4;
+package src.com.vio.exercise4;
 
-import com.vio.utils.Utils;
+import src.com.vio.utils.Utils;
 
 import java.util.ArrayList;
 import java.util.List;
