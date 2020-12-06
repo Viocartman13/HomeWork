@@ -9,6 +9,9 @@ import java.util.stream.Collectors;
 
 public class Utils {
 
+    public void testMethod() {
+    }
+
     public static Optional<Integer> randomOptionalGenerator() {
         return Math.random() >= 0.5 ? Optional.of(1) : Optional.empty();
     }
