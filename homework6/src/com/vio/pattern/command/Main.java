@@ -4,14 +4,16 @@ public class Main {
 
     public static void main(String[] args) {
 
-        Operation turnOnLights = new TurnOnLights();
-        turnOnLights.executeOperation();
+        OperationExecutor operationExecutor;
 
-        Operation turnVolumeUp = new TurnVolumeUp();
-        turnVolumeUp.executeOperation();
+        operationExecutor = new OperationExecutor(new TurnOnLights());
+        operationExecutor.execute();
 
-        Operation turnOffLights = new TurnOffLights();
-        turnOffLights.executeOperation();
+        operationExecutor = new OperationExecutor(new TurnOffLights());
+        operationExecutor.execute();
+
+        operationExecutor = new OperationExecutor(new TurnVolumeUp());
+        operationExecutor.execute();
 
     }
 }
