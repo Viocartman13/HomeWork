@@ -3,9 +3,15 @@ package src.com.vio.pattern.observer;
 
 public interface Subject {
 
-    public void attach(MyObserver observer);
+    void attachUpdateObserver(UpdateObserver observer);
 
-    public void detach(MyObserver observer);
+    void detachUpdateObserver(UpdateObserver observer);
 
-    public void updateChildren(String addHistoryMessage);
+    void updateChildren(String updateMessage);
+
+    void attachHistoryObserver(HistoryObserver observer);
+
+    void detachHistoryObserver(HistoryObserver observer);
+
+    void addHistoryMessage(String historyMessage);
 }

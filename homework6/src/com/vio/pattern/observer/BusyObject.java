@@ -8,7 +8,8 @@ public class BusyObject implements Subject {
     private Integer id;
     private String name;
     private LocalDateTime creationDate;
-    private final List<MyObserver> observerList = new ArrayList<>();
+    private final List<UpdateObserver> updateObserverList = new ArrayList<>();
+    private final List<HistoryObserver> historyObserverList = new ArrayList<>();
 
     public void updateObjectAndDependencies(String name, LocalDateTime creationDate) {
         this.name = name;
@@ -16,29 +17,48 @@ public class BusyObject implements Subject {
             throw new IllegalArgumentException("The date can't be set before the original creation date");
         }
 
-        updateChildren(creationDate.toString());
+        addHistoryMessage(createMessage(creationDate.toString()));
+        updateChildren(createMessage(creationDate.toString()));
     }
 
-    private void addHistoryMessage(LocalDateTime creationDate) {
+    private String createMessage(String updateDate) {
+        StringBuilder messageBuilder = new StringBuilder("Object with id ");
+        messageBuilder.append(this.id.toString()).append(" was updated on ").append(updateDate);
+
+        return messageBuilder.toString();
     }
 
-    @Override
-    public void attach(MyObserver observer) {
-        observerList.add(observer);
-    }
-
-    @Override
-    public void detach(MyObserver observer) {
-        observerList.remove(observer);
-    }
-
-    @Override
-    public void updateChildren(String updateDate) {
-        StringBuilder updateMessageBuilder = new StringBuilder("Object with id ");
-        updateMessageBuilder.append(this.id.toString()).append(" was updated on ").append(updateDate);
-        for (MyObserver observer : observerList) {
-            observer.subscribe(updateMessageBuilder.toString());
+    public void addHistoryMessage(String historyMessage) {
+        for (HistoryObserver observer : historyObserverList) {
+            observer.subscribe(historyMessage);
         }
+    }
+
+    public void attachUpdateObserver(UpdateObserver observer) {
+        updateObserverList.add(observer);
+    }
+
+    @Override
+    public void detachUpdateObserver(UpdateObserver observer) {
+        updateObserverList.remove(observer);
+    }
+
+    @Override
+    public void updateChildren(String updateMessage) {
+        for (UpdateObserver observer : updateObserverList) {
+            observer.subscribe(updateMessage);
+        }
+    }
+
+    @Override
+    public void attachHistoryObserver(HistoryObserver observer) {
+        this.historyObserverList.add(observer);
+    }
+
+    @Override
+    public void detachHistoryObserver(HistoryObserver observer) {
+        this.historyObserverList.remove(observer);
+
     }
 
     public Integer getId() {

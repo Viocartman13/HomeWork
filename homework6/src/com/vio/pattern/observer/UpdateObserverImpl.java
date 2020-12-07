@@ -1,10 +1,10 @@
 package src.com.vio.pattern.observer;
 
-public class MyObserverImpl implements MyObserver {
+public class UpdateObserverImpl implements UpdateObserver {
 
     private String name;
 
-    public MyObserverImpl(String name) {
+    public UpdateObserverImpl(String name) {
         this.name = name;
     }
 

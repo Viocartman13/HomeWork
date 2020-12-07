@@ -1,6 +1,6 @@
 package src.com.vio.pattern.observer;
 
-public class HistoryObserverImpl implements MyObserver {
+public class HistoryObserverImpl implements HistoryObserver {
 
     @Override
     public void subscribe(String message) {
