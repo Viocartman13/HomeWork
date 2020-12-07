@@ -7,12 +7,6 @@ import java.util.Optional;
 
 public class HttpConnectionHandlerFacade {
 
-    public HttpURLConnection openConnection(URL url) throws IOException {
-        HttpConnectionHandler httpConnectionHandler = new HttpConnectionHandler(url);
-
-        return httpConnectionHandler.createConnection();
-    }
-
     public Optional<String> sendRequest(URL url, String requestMethod) throws IOException {
         HttpConnectionHandler httpConnectionHandler = new HttpConnectionHandler(url);
         HttpURLConnection httpURLConnection = httpConnectionHandler.createConnection();
