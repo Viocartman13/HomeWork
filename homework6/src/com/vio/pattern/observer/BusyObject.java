@@ -16,11 +16,10 @@ public class BusyObject implements Subject {
             throw new IllegalArgumentException("The date can't be set before the original creation date");
         }
 
-        updateChildren(addHistoryMessage(creationDate));
+        updateChildren(creationDate.toString());
     }
 
-    private String addHistoryMessage(LocalDateTime creationDate) {
-        return "Object with id " + this.id + "was updated on " + creationDate.toString();
+    private void addHistoryMessage(LocalDateTime creationDate) {
     }
 
     @Override
@@ -34,9 +33,11 @@ public class BusyObject implements Subject {
     }
 
     @Override
-    public void updateChildren(String message) {
+    public void updateChildren(String updateDate) {
+        StringBuilder updateMessageBuilder = new StringBuilder("Object with id ");
+        updateMessageBuilder.append(this.id.toString()).append(" was updated on ").append(updateDate);
         for (MyObserver observer : observerList) {
-            observer.subscribe(message);
+            observer.subscribe(updateMessageBuilder.toString());
         }
     }
 

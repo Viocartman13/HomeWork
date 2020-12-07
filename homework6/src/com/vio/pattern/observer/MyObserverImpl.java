@@ -10,6 +10,7 @@ public class MyObserverImpl implements MyObserver {
 
     @Override
     public void subscribe(String message) {
-        System.out.println("Observer with name " + this.name + " received the following message : " + message);
+        System.out.println("Observer with name " + this.name + " received the following message : ");
+        System.out.println(message);
     }
 }
