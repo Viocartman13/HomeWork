@@ -8,8 +8,7 @@ public class BusyObject implements Subject {
     private Integer id;
     private String name;
     private LocalDateTime creationDate;
-    private final List<UpdateObserver> updateObserverList = new ArrayList<>();
-    private final List<HistoryObserver> historyObserverList = new ArrayList<>();
+    private final List<Observer> observerList = new ArrayList<>();
 
     public void updateObjectAndDependencies(String name, LocalDateTime creationDate) {
         this.name = name;
@@ -17,8 +16,24 @@ public class BusyObject implements Subject {
             throw new IllegalArgumentException("The date can't be set before the original creation date");
         }
 
-        addHistoryMessage(createMessage(creationDate.toString()));
         updateChildren(createMessage(creationDate.toString()));
+    }
+
+    @Override
+    public void attach(Observer observer) {
+        observerList.add(observer);
+    }
+
+    @Override
+    public void detach(Observer observer) {
+        observerList.remove(observer);
+
+    }
+
+    public void updateChildren(String message) {
+        for (Observer observer : observerList) {
+            observer.subscribe(message);
+        }
     }
 
     private String createMessage(String updateDate) {
@@ -26,39 +41,6 @@ public class BusyObject implements Subject {
         messageBuilder.append(this.id.toString()).append(" was updated on ").append(updateDate);
 
         return messageBuilder.toString();
-    }
-
-    public void addHistoryMessage(String historyMessage) {
-        for (HistoryObserver observer : historyObserverList) {
-            observer.subscribe(historyMessage);
-        }
-    }
-
-    public void attachUpdateObserver(UpdateObserver observer) {
-        updateObserverList.add(observer);
-    }
-
-    @Override
-    public void detachUpdateObserver(UpdateObserver observer) {
-        updateObserverList.remove(observer);
-    }
-
-    @Override
-    public void updateChildren(String updateMessage) {
-        for (UpdateObserver observer : updateObserverList) {
-            observer.subscribe(updateMessage);
-        }
-    }
-
-    @Override
-    public void attachHistoryObserver(HistoryObserver observer) {
-        this.historyObserverList.add(observer);
-    }
-
-    @Override
-    public void detachHistoryObserver(HistoryObserver observer) {
-        this.historyObserverList.remove(observer);
-
     }
 
     public Integer getId() {
@@ -84,5 +66,6 @@ public class BusyObject implements Subject {
     public void setCreationDate(LocalDateTime creationDate) {
         this.creationDate = creationDate;
     }
+
 }
 

@@ -1,6 +1,10 @@
 package src.com.vio.pattern.observer;
 
-public interface HistoryObserver {
+public class HistoryObserver implements Observer {
 
-    void subscribe(String message);
+    @Override
+    public void subscribe(String message) {
+        System.out.println("Adding update history for following object: ");
+        System.out.println(message);
+    }
 }

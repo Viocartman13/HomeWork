@@ -13,16 +13,16 @@ public class Main {
         UpdateObserverImpl observer1 = new UpdateObserverImpl("Observer 1 ");
         UpdateObserverImpl observer2 = new UpdateObserverImpl("Observer 2");
         UpdateObserverImpl observer3 = new UpdateObserverImpl("Observer 3");
-        HistoryObserverImpl historyObserver = new HistoryObserverImpl();
+        HistoryObserver historyObserver = new HistoryObserver();
 
-        busyObject.attachUpdateObserver(observer1);
-        busyObject.attachUpdateObserver(observer2);
-        busyObject.attachHistoryObserver(historyObserver);
+        busyObject.attach(observer1);
+        busyObject.attach(observer2);
+        busyObject.attach(historyObserver);
 
         busyObject.updateObjectAndDependencies("busy object updated", LocalDateTime.now());
 
-        busyObject.detachUpdateObserver(observer1);
-        busyObject.attachUpdateObserver(observer3);
+        busyObject.detach(observer1);
+        busyObject.attach(observer3);
 
         LocalDateTime timeNow = LocalDateTime.now();
         LocalDateTime changedLocalDateTime = timeNow.plusHours(4);

@@ -1,6 +1,6 @@
 package src.com.vio.pattern.observer;
 
-public class UpdateObserverImpl implements UpdateObserver {
+public class UpdateObserverImpl implements Observer {
 
     private String name;
 
